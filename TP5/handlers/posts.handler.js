@@ -1,0 +1,101 @@
+const models = require('../models');
+const Post = models.Post;
+const Comment = models.Comment;
+
+const getPosts = async (req, res) => {
+  try {
+    const posts = await Post.findAll();
+    res.json(posts);
+  } catch (error) {
+    res.status(404).json({
+      error: error
+    });
+  }
+}
+
+const getPost = async (req, res) => {
+  try {
+    const post = await Post.findOne({
+      where: {
+        id: req.params.id
+      }
+    });
+    if (req.query.comments) {
+      post.dataValues.comments = await Comment.findAll({
+        where: {
+          postId: req.params.id
+        }
+      });
+    }
+    res.json(post);
+  } catch (error) {
+    res.status(404).json({
+      error: error
+    });
+  }
+}
+
+const createPost = async (req, res) => {
+  try {
+    const post = await Post.create({
+      title: req.body.title,
+      content: req.body.content,
+      userId: req.body.userId
+    });
+    res.json(post);
+  } catch (error) {
+    res.status(400).json({
+      error: error
+    });
+  }
+}
+
+const patchPost = async (req, res) => {
+  try {
+    const data = {};
+    if (req.body.title) {
+      data.title = req.body.title;
+    }
+
+    if (req.body.content) {
+      data.content = req.body.content;
+    }
+
+    if (req.body.userId) {
+      data.userId = req.body.userId;
+    }
+    const post = await Post.update(data, {
+      where: {
+        id: req.params.id
+      }
+    });
+    res.json(post);
+  } catch (error) {
+    res.status(400).json({
+      error: error
+    });
+  }
+};
+
+const deletePost = async (req, res) => {
+  try {
+    await Post.destroy({
+      where: {
+        id: req.params.id
+      }
+    });
+    res.json('deleted');
+  } catch (error) {
+    res.status(400).json({
+      error: error
+    });
+  }
+}
+
+module.exports = {
+  getPosts,
+  getPost,
+  createPost,
+  patchPost,
+  deletePost
+}

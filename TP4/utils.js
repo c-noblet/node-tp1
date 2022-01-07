@@ -21,7 +21,6 @@ const infosHeader = (req, res) => {
 }
 
 const user = (req, res) => {
-  console.log(req.body);
   const firstname = req.body.firstname;
   const birthdate = req.body.birthdate;
   const age = new Date().getFullYear() - parseInt(birthdate.split('/')[2]);
