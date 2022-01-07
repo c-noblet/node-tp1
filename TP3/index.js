@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 // 1
-function foo1(str = '') {
+function isTooLong(str = '') {
   return new Promise((resolve, reject) => {
     if (str.length <= 20) {
       resolve(true);
@@ -12,7 +12,7 @@ function foo1(str = '') {
 }
 
 // 2
-function foo2(a = 0, b = 0) {
+function isSuperior(a = 0, b = 0) {
   return new Promise((resolve, reject) => {
     if (a > b) {
       resolve(a - b);
@@ -23,7 +23,7 @@ function foo2(a = 0, b = 0) {
 }
 
 // 3
-function foo3(date = '') {
+function ismajor(date = '') {
   return new Promise((resolve, reject) => {
     const majorite = new Date().getFullYear() - 18;
     if (parseInt(date.split('/')[2]) >= majorite) {
@@ -37,37 +37,37 @@ function foo3(date = '') {
 async function main() {
 
   // 4
-  foo1('tesdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddt').then((result) => {
+  isTooLong('tesdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddt').then((result) => {
     console.log(result);
   }).catch((error) => {
     console.log(error);
   });
 
-  foo1('test').then((result) => {
+  isTooLong('test').then((result) => {
     console.log(result);
   }).catch((error) => {
     console.log(error);
   });
 
-  foo2(5, 8).then((result) => {
+  isSuperior(5, 8).then((result) => {
     console.log(result);
   }).catch((error) => {
     console.log(error);
   });
 
-  foo2(8, 5).then((result) => {
+  isSuperior(8, 5).then((result) => {
     console.log(result);
   }).catch((error) => {
     console.log(error);
   });
 
-  foo3('01/01/2020').then((result) => {
+  ismajor('01/01/2020').then((result) => {
     console.log(result);
   }).catch((error) => {
     console.log(error);
   });
 
-  foo3('01/01/1990').then((result) => {
+  ismajor('01/01/1990').then((result) => {
     console.log(result);
   }).catch((error) => {
     console.log(error);
@@ -75,12 +75,12 @@ async function main() {
 
   // 5
   try {
-    console.log(await foo1('test'));
-    console.log(await foo1('tesdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddt'))
-    console.log(await foo2(5, 8));
-    console.log(await foo2(8, 5));
-    console.log(await foo3('01/01/2020'));
-    console.log(await foo3('01/01/1990'));
+    console.log(await isTooLong('test'));
+    console.log(await isTooLong('tesdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddt'))
+    console.log(await isSuperior(5, 8));
+    console.log(await isSuperior(8, 5));
+    console.log(await ismajor('01/01/2020'));
+    console.log(await ismajor('01/01/1990'));
 
   } catch (error) {
     console.log(error);
