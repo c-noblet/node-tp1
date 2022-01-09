@@ -53,10 +53,6 @@ const patchPost = async (req, res) => {
     if (req.body.content) {
       data.content = req.body.content;
     }
-
-    if (req.body.userId) {
-      data.userId = req.body.userId;
-    }
     const post = await Post.update(data, {
       where: {
         id: req.params.id

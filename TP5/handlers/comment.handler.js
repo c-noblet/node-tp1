@@ -48,12 +48,6 @@ const patchComment = async (req, res) => {
     if (req.body.content) {
       data.content = req.body.content;
     };
-    if (req.body.postId) {
-      data.postId = req.body.postId;
-    }
-    if (req.body.userId) {
-      data.userId = req.body.userId;
-    }
     const comment = await Comment.update(data, {
       where: {
         id: req.params.id
