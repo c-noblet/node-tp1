@@ -1,7 +1,7 @@
 const http = require('http');
 
 const server = http.createServer((req, res) => {
-  res.writeHead(400);
+  res.writeHead(500);
   res.end('Error');
 });
 

@@ -10,7 +10,7 @@ const message = (req, res) => {
       message: req.query.message
     });
   } else {
-    res.status(400).json({
+    res.status(500).json({
       message: 'Bad Request'
     });
   }
@@ -33,7 +33,7 @@ const user = (req, res) => {
       message: 'Forbidden'
     })
   } else {
-    res.status(400).json({
+    res.status(500).json({
       message: 'Bad Request'
     });
   }

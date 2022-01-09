@@ -4,7 +4,7 @@ const {
   createUser,
   patchUser,
   deleteUser
-} = require('../handlers/users.handler.js');
+} = require('../handlers/user.handler.js');
 const {
   Router
 } = require('express');

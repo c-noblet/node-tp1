@@ -5,9 +5,9 @@ const Comment = models.Comment;
 const getPosts = async (req, res) => {
   try {
     const posts = await Post.findAll();
-    res.json(posts);
+    res.status(200).json(posts);
   } catch (error) {
-    res.status(404).json({
+    res.status(500).json({
       error: error
     });
   }
@@ -15,21 +15,14 @@ const getPosts = async (req, res) => {
 
 const getPost = async (req, res) => {
   try {
-    const post = await Post.findOne({
-      where: {
-        id: req.params.id
-      }
-    });
+    let args = {};
     if (req.query.comments) {
-      post.dataValues.comments = await Comment.findAll({
-        where: {
-          postId: req.params.id
-        }
-      });
+      args.include = ['comments'];
     }
-    res.json(post);
+    const post = await Post.findByPk(req.params.id, args);
+    res.status(200).json(post);
   } catch (error) {
-    res.status(404).json({
+    res.status(500).json({
       error: error
     });
   }
@@ -42,9 +35,9 @@ const createPost = async (req, res) => {
       content: req.body.content,
       userId: req.body.userId
     });
-    res.json(post);
+    res.status(201).json(post);
   } catch (error) {
-    res.status(400).json({
+    res.status(500).json({
       error: error
     });
   }
@@ -69,9 +62,9 @@ const patchPost = async (req, res) => {
         id: req.params.id
       }
     });
-    res.json(post);
+    res.status(200).json(post);
   } catch (error) {
-    res.status(400).json({
+    res.status(500).json({
       error: error
     });
   }
@@ -84,9 +77,9 @@ const deletePost = async (req, res) => {
         id: req.params.id
       }
     });
-    res.json('deleted');
+    res.status(200).json('Post deleted');
   } catch (error) {
-    res.status(400).json({
+    res.status(500).json({
       error: error
     });
   }

@@ -19,7 +19,9 @@ module.exports = (sequelize, DataTypes) => {
         },
         onDelete: 'CASCADE'
       });
-      Post.hasMany(models.Comment)
+      Post.hasMany(models.Comment, {
+        as: 'comments'
+      });
     }
   };
   Post.init({

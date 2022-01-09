@@ -18,7 +18,9 @@ module.exports = (sequelize, DataTypes) => {
           allowNull: true
         }
       });
-      User.hasMany(models.Post);
+      User.hasMany(models.Post, {
+        as: 'posts'
+      });
       User.hasMany(models.Comment);
     }
   };

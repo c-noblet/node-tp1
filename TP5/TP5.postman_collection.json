@@ -1,0 +1,508 @@
+{
+	"info": {
+		"_postman_id": "6a767ee5-4e34-43ff-a19f-2c500d77391f",
+		"name": "TP5",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET /users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/users",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /posts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/posts/",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"posts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /comments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/comments",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /roles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/roles",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /users/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/users/9757abdb-354b-4116-93d1-90be882bd35d",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"users",
+						"9757abdb-354b-4116-93d1-90be882bd35d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /users/:id?posts=true",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/users/9757abdb-354b-4116-93d1-90be882bd35d?posts=true",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"users",
+						"9757abdb-354b-4116-93d1-90be882bd35d"
+					],
+					"query": [
+						{
+							"key": "posts",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /posts/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/posts/01987c82-e160-4123-bc54-b8bcd066f1e1",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"posts",
+						"01987c82-e160-4123-bc54-b8bcd066f1e1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /posts/:id?comments=true",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/posts/01987c82-e160-4123-bc54-b8bcd066f1e1?comments=true",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"posts",
+						"01987c82-e160-4123-bc54-b8bcd066f1e1"
+					],
+					"query": [
+						{
+							"key": "comments",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /comments/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/comments/608965ba-5f55-4cfd-aaec-810353006f4c",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"comments",
+						"608965ba-5f55-4cfd-aaec-810353006f4c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /roles/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/roles/e6dbd782-6daa-4634-b1d1-49819fb8fae5",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"roles",
+						"e6dbd782-6daa-4634-b1d1-49819fb8fae5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /users",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstname\": \"John\",\n    \"lastname\": \"Doe\",\n    \"email\": \"john.doe@mail.com\",\n    \"username\": \"JD\",\n    \"github\": \"https://github.com/JD\",\n    \"roleId\": \"1c44917d-bb20-4249-808e-55e5b09a7f81\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/users",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /posts",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Foo\",\n    \"content\": \"Lorem ipsum\",\n    \"userId\": \"66b981a6-aaaa-418f-a4da-5d5429a0b63d\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/posts",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /comments",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"content\": \"Lorem ipsum\",\n   \"postId\": \"844699f9-608c-4a27-946d-d4bda6aa3bcd\",\n   \"userId\": \"66b981a6-aaaa-418f-a4da-5d5429a0b63d\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/comments",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /roles",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"publisher\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/roles",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH /users/:id",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"alice-doe\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/users/9757abdb-354b-4116-93d1-90be882bd35d",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"users",
+						"9757abdb-354b-4116-93d1-90be882bd35d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH /posts/:id",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content\": \"Lorem ipsum, lorem ipsum\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/posts/7b3e224f-89c7-4023-b8a9-ba7da8097bfe",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"posts",
+						"7b3e224f-89c7-4023-b8a9-ba7da8097bfe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH /comments/:id",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content\": \"Lorem ipsum, lorem ipsum\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/comments/71a10a0f-2047-4c7b-a67b-5077cb15325b",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"comments",
+						"71a10a0f-2047-4c7b-a67b-5077cb15325b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH /roles/:id",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"writer\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/roles/1c44917d-bb20-4249-808e-55e5b09a7f81",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"roles",
+						"1c44917d-bb20-4249-808e-55e5b09a7f81"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /users/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/users/9757abdb-354b-4116-93d1-90be882bd35d",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"users",
+						"9757abdb-354b-4116-93d1-90be882bd35d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /posts/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/posts/01987c82-e160-4123-bc54-b8bcd066f1e1",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"posts",
+						"01987c82-e160-4123-bc54-b8bcd066f1e1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /comments/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/comments/71a10a0f-2047-4c7b-a67b-5077cb15325b",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"comments",
+						"71a10a0f-2047-4c7b-a67b-5077cb15325b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /roles/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/roles/e6dbd782-6daa-4634-b1d1-49819fb8fae5",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"roles",
+						"e6dbd782-6daa-4634-b1d1-49819fb8fae5"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://localhost:8080"
+		}
+	]
+}

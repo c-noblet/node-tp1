@@ -14,19 +14,16 @@ module.exports = {
      * }], {});
      */
 
-    const data = [];
-    for (let i = 1; i < 5; i++) {
-      data.push({
-        id: uuidv4(),
-        firstname: `firstname-${i}`,
-        lastname: `lastname-${i}`,
-        email: `user-${i}@mail.com`,
-        username: `username-${i}`,
-        github: `https://github.com/user-${i}`,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      });
-    }
+    const data = [{
+      id: uuidv4(),
+      firstname: 'Bob',
+      lastname: `Doe`,
+      email: `bob.doe@mail.com`,
+      username: `b-doe`,
+      github: `https://github.com/b-doe`,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }]
     queryInterface.bulkInsert('Users', data, {});
   },
 

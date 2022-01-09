@@ -4,7 +4,7 @@ const {
   createPost,
   patchPost,
   deletePost
-} = require('../handlers/posts.handler.js');
+} = require('../handlers/post.handler.js');
 const {
   Router
 } = require('express');

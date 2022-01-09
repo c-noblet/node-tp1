@@ -4,7 +4,7 @@ const {
   createComment,
   patchComment,
   deleteComment
-} = require('../handlers/comments.handler.js');
+} = require('../handlers/comment.handler.js');
 const {
   Router
 } = require('express');

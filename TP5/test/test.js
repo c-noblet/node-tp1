@@ -4,11 +4,11 @@ async function main() {
   const url = 'http://localhost:8080';
 
   const createdUser = await axios.post(url + '/users', {
-    firstname: 'a',
-    lastname: 'b',
-    email: 'a.b@mail.com',
-    username: 'ab',
-    github: 'https://github.com/ab'
+    firstname: 'alice',
+    lastname: 'doe',
+    email: 'alice.doe@mail.com',
+    username: 'a-doe',
+    github: 'https://github.com/a-doe'
   });
 
   const createdPost = await axios.post(url + '/posts', {

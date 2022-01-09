@@ -5,9 +5,9 @@ const Post = models.Post;
 const getUsers = async (req, res) => {
   try {
     const users = await User.findAll();
-    res.json(users);
+    res.status(200).json(users);
   } catch (error) {
-    res.status(404).json({
+    res.status(500).json({
       error: error
     });
   }
@@ -15,21 +15,14 @@ const getUsers = async (req, res) => {
 
 const getUser = async (req, res) => {
   try {
-    const user = await User.findOne({
-      where: {
-        id: req.params.id
-      }
-    });
+    let args = {};
     if (req.query.posts) {
-      user.dataValues.posts = await Post.findAll({
-        where: {
-          userId: req.params.id
-        }
-      });
+      args.include = ['posts'];
     }
-    res.json(user);
+    const user = await User.findByPk(req.params.id, args);
+    res.status(200).json(user);
   } catch (error) {
-    res.status(404).json({
+    res.status(500).json({
       error: error
     });
   }
@@ -37,16 +30,20 @@ const getUser = async (req, res) => {
 
 const createUser = async (req, res) => {
   try {
-    const user = await User.create({
+    const data = {
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       email: req.body.email,
       username: req.body.username,
       github: req.body.github
-    });
-    res.json(user);
+    }
+    if (req.body.roleId) {
+      data.roleId = req.body.roleId
+    }
+    const user = await User.create(data);
+    res.status(201).json(user);
   } catch (error) {
-    res.status(400).json({
+    res.status(500).json({
       error: error
     });
   }
@@ -78,9 +75,9 @@ const patchUser = async (req, res) => {
         id: req.params.id
       }
     });
-    res.json(user);
+    res.status(200).json(user);
   } catch (error) {
-    res.status(400).json({
+    res.status(500).json({
       error: error
     });
   }
@@ -93,9 +90,9 @@ const deleteUser = async (req, res) => {
         id: req.params.id
       }
     });
-    res.json('deleted');
+    res.status(200).json('User deleted');
   } catch (error) {
-    res.status(404).json({
+    res.status(500).json({
       error: error
     });
   }

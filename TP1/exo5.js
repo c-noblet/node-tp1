@@ -7,7 +7,7 @@ const server = http.createServer((req, res) => {
     res.writeHead(200);
     res.end('hello world');
   } else {
-    res.writeHead(404);
+    res.writeHead(500);
     res.end('Not found');
   }
 });

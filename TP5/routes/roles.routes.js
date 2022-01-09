@@ -4,7 +4,7 @@ const {
   createRole,
   patchRole,
   deleteRole
-} = require('../handlers/roles.handler.js');
+} = require('../handlers/role.handler.js');
 const {
   Router
 } = require('express');

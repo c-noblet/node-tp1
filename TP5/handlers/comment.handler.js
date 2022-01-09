@@ -4,9 +4,9 @@ const Comment = models.Comment;
 const getComments = async (req, res) => {
   try {
     const comments = await Comment.findAll();
-    res.json(comments);
+    res.status(200).json(comments);
   } catch (error) {
-    res.status(404).json({
+    res.status(500).json({
       error: error
     });
   }
@@ -19,9 +19,9 @@ const getComment = async (req, res) => {
         id: req.params.id
       }
     });
-    res.json(comment);
+    res.status(200).json(comment);
   } catch (error) {
-    res.status(404).json({
+    res.status(500).json({
       error: error
     });
   }
@@ -34,9 +34,9 @@ const createComment = async (req, res) => {
       postId: req.body.postId,
       userId: req.body.userId
     });
-    res.json(comment);
+    res.status(201).json(comment);
   } catch (error) {
-    res.status(400).json({
+    res.status(500).json({
       error: error
     });
   }
@@ -59,9 +59,9 @@ const patchComment = async (req, res) => {
         id: req.params.id
       }
     });
-    res.json(comment);
+    res.status(200).json(comment);
   } catch (error) {
-    res.status(400).json({
+    res.status(500).json({
       error: error
     });
   }
@@ -74,9 +74,9 @@ const deleteComment = async (req, res) => {
         id: req.params.id
       }
     });
-    res.json('deleted');
+    res.status(200).json('Comment deleted');
   } catch (error) {
-    res.status(400).json({
+    res.status(500).json({
       error: error
     });
   }
