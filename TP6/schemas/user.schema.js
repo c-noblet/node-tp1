@@ -28,6 +28,14 @@ const returnUserSchema = Joi.object({
   roleId: Joi.any(),
   createdAt: Joi.date().required(),
   updatedAt: Joi.date().required(),
+  posts: Joi.array().items(Joi.object({
+    id: Joi.string().uuid().required(),
+    content: Joi.string().min(1),
+    userId: Joi.string().uuid(),
+    postId: Joi.string().uuid(),
+    createdAt: Joi.date().required(),
+    updatedAt: Joi.date().required(),
+  }).unknown(true)),
 }).unknown(true);
 
 const returnUsersSchema = Joi.array().items(returnUserSchema);
@@ -36,11 +44,15 @@ const paramsUserSchema = Joi.object({
   id: Joi.string().uuid().required()
 });
 
+const queryUserSchema = Joi.object({
+  posts: Joi.string()
+})
 
 module.exports = {
   createUserSchema,
   patchUserSchema,
   returnUserSchema,
   paramsUserSchema,
-  returnUsersSchema
+  returnUsersSchema,
+  queryUserSchema
 };

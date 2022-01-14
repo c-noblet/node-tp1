@@ -4,7 +4,8 @@ const {
   patchPostSchema,
   paramsPostSchema,
   returnPostSchema,
-  returnPostsSchema
+  returnPostsSchema,
+  queryPostSchema
 } = require('../schemas/post.schema.js');
 const {
   getPosts,
@@ -20,7 +21,7 @@ const {
 const router = Router();
 
 router.get('/', validator.response(returnPostsSchema), getPosts);
-router.get('/:id', validator.params(paramsPostSchema), validator.response(returnPostSchema), getPost);
+router.get('/:id', validator.query(queryPostSchema), validator.params(paramsPostSchema), validator.response(returnPostSchema), getPost);
 router.post('/', validator.body(createPostSchema), validator.response(returnPostSchema), createPost);
 router.patch('/:id', validator.params(paramsPostSchema), validator.body(patchPostSchema), patchPost);
 
