@@ -6,7 +6,7 @@ const createUserSchema = Joi.object({
   email: Joi.string().email().required(),
   username: Joi.string().min(1).max(20).required(),
   github: Joi.string().uri().required(),
-  roleId: Joi.string().guid()
+  roleId: Joi.string().uuid()
 });
 
 const patchUserSchema = Joi.object({
@@ -19,7 +19,7 @@ const patchUserSchema = Joi.object({
 });
 
 const returnUserSchema = Joi.object({
-  id: Joi.string().guid(),
+  id: Joi.string().uuid(),
   firstname: Joi.string().min(1).max(100).required(),
   lastname: Joi.string().min(1).max(100).required(),
   email: Joi.string().email().required(),
@@ -28,22 +28,12 @@ const returnUserSchema = Joi.object({
   roleId: Joi.any(),
   createdAt: Joi.date().required(),
   updatedAt: Joi.date().required(),
-});
+}).unknown(true);
 
-const returnUsersSchema = Joi.array().items({
-  id: Joi.string().guid(),
-  firstname: Joi.string().required(),
-  lastname: Joi.string().required(),
-  email: Joi.string().email().required(),
-  username: Joi.string().required(),
-  github: Joi.string().required(),
-  roleId: Joi.any(),
-  createdAt: Joi.date().required(),
-  updatedAt: Joi.date().required(),
-});
+const returnUsersSchema = Joi.array().items(returnUserSchema);
 
 const paramsUserSchema = Joi.object({
-  id: Joi.string().required()
+  id: Joi.string().uuid().required()
 });
 
 
