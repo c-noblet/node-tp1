@@ -1,3 +1,4 @@
+const createError = require('http-errors');
 const models = require('../models');
 const Comment = models.Comment;
 
@@ -5,10 +6,8 @@ const getComments = async (req, res) => {
   try {
     const comments = await Comment.findAll();
     res.status(200).json(comments);
-  } catch (error) {
-    res.status(500).json({
-      error: error
-    });
+  } catch {
+    return next(createError(404));
   }
 }
 
@@ -20,10 +19,8 @@ const getComment = async (req, res) => {
       }
     });
     res.status(200).json(comment);
-  } catch (error) {
-    res.status(500).json({
-      error: error
-    });
+  } catch {
+    return next(createError(404));
   }
 }
 
@@ -35,10 +32,8 @@ const createComment = async (req, res) => {
       userId: req.body.userId
     });
     res.status(201).json(comment);
-  } catch (error) {
-    res.status(500).json({
-      error: error
-    });
+  } catch {
+    return next(createError(500));
   }
 }
 
@@ -54,10 +49,8 @@ const patchComment = async (req, res) => {
       }
     });
     res.status(200).json(comment);
-  } catch (error) {
-    res.status(500).json({
-      error: error
-    });
+  } catch {
+    return next(createError(500));
   }
 };
 
@@ -69,10 +62,8 @@ const deleteComment = async (req, res) => {
       }
     });
     res.status(200).json('Comment deleted');
-  } catch (error) {
-    res.status(500).json({
-      error: error
-    });
+  } catch {
+    return next(createError(500));
   }
 }
 

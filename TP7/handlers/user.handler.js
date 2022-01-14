@@ -1,19 +1,18 @@
+const createError = require('http-errors');
 const models = require('../models');
 const User = models.User;
 const Post = models.Post;
 
-const getUsers = async (req, res) => {
+const getUsers = async (req, res, next) => {
   try {
     const users = await User.findAll();
     res.status(200).json(users);
-  } catch (error) {
-    res.status(500).json({
-      error: error
-    });
+  } catch {
+    return next(createError(404));
   }
 }
 
-const getUser = async (req, res) => {
+const getUser = async (req, res, next) => {
   try {
     let args = {};
     if (req.query.posts == 'true') {
@@ -21,14 +20,12 @@ const getUser = async (req, res) => {
     }
     const user = await User.findByPk(req.params.id, args);
     res.status(200).json(user);
-  } catch (error) {
-    res.status(500).json({
-      error: error
-    });
+  } catch {
+    return next(createError(404));
   }
 }
 
-const createUser = async (req, res) => {
+const createUser = async (req, res, next) => {
   try {
     const data = {
       firstname: req.body.firstname,
@@ -42,14 +39,12 @@ const createUser = async (req, res) => {
     }
     const user = await User.create(data);
     res.status(201).json(user);
-  } catch (error) {
-    res.status(500).json({
-      error: error
-    });
-  }
+  } catch {
+    return next(createError(500));
+  };
 }
 
-const patchUser = async (req, res) => {
+const patchUser = async (req, res, next) => {
   try {
     const data = {};
     if (req.body.firstname) {
@@ -76,14 +71,12 @@ const patchUser = async (req, res) => {
       }
     });
     res.status(200).json(user);
-  } catch (error) {
-    res.status(500).json({
-      error: error
-    });
+  } catch {
+    return next(createError(500));
   }
 };
 
-const deleteUser = async (req, res) => {
+const deleteUser = async (req, res, next) => {
   try {
     await User.destroy({
       where: {
@@ -91,10 +84,8 @@ const deleteUser = async (req, res) => {
       }
     });
     res.status(200).json('User deleted');
-  } catch (error) {
-    res.status(500).json({
-      error: error
-    });
+  } catch {
+    return next(createError(500));
   }
 }
 

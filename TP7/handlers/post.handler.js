@@ -1,3 +1,4 @@
+const createError = require('http-errors');
 const models = require('../models');
 const Post = models.Post;
 const Comment = models.Comment;
@@ -6,10 +7,8 @@ const getPosts = async (req, res) => {
   try {
     const posts = await Post.findAll();
     res.status(200).json(posts);
-  } catch (error) {
-    res.status(500).json({
-      error: error
-    });
+  } catch {
+    return next(createError(404));
   }
 }
 
@@ -21,10 +20,8 @@ const getPost = async (req, res) => {
     }
     const post = await Post.findByPk(req.params.id, args);
     res.status(200).json(post);
-  } catch (error) {
-    res.status(500).json({
-      error: error
-    });
+  } catch {
+    return next(createError(404));
   }
 }
 
@@ -36,10 +33,8 @@ const createPost = async (req, res) => {
       userId: req.body.userId
     });
     res.status(201).json(post);
-  } catch (error) {
-    res.status(500).json({
-      error: error
-    });
+  } catch {
+    return next(createError(500));
   }
 }
 
@@ -59,10 +54,8 @@ const patchPost = async (req, res) => {
       }
     });
     res.status(200).json(post);
-  } catch (error) {
-    res.status(500).json({
-      error: error
-    });
+  } catch {
+    return next(createError(500));
   }
 };
 
@@ -74,10 +67,8 @@ const deletePost = async (req, res) => {
       }
     });
     res.status(200).json('Post deleted');
-  } catch (error) {
-    res.status(500).json({
-      error: error
-    });
+  } catch {
+    return next(createError(500));
   }
 }
 

@@ -1,3 +1,4 @@
+const createError = require('http-errors');
 const models = require('../models');
 const Role = models.Role;
 
@@ -5,10 +6,8 @@ const getRoles = async (req, res) => {
   try {
     const roles = await Role.findAll();
     res.status(200).json(roles);
-  } catch (error) {
-    res.status(500).json({
-      error: error
-    });
+  } catch {
+    return next(createError(404));
   }
 }
 
@@ -20,10 +19,8 @@ const getRole = async (req, res) => {
       }
     })
     res.status(200).json(role);
-  } catch (error) {
-    res.status(500).json({
-      error: error
-    });
+  } catch {
+    return next(createError(404));
   }
 }
 
@@ -33,10 +30,8 @@ const createRole = async (req, res) => {
       name: req.body.name
     });
     res.status(201).json(role);
-  } catch (error) {
-    res.status(500).json({
-      error: error
-    });
+  } catch {
+    return next(createError(500));
   }
 }
 
@@ -52,10 +47,8 @@ const patchRole = async (req, res) => {
       }
     });
     res.status(200).json(role);
-  } catch (error) {
-    res.status(500).json({
-      error: error
-    });
+  } catch {
+    return next(createError(500));
   }
 };
 
@@ -67,10 +60,8 @@ const deleteRole = async (req, res) => {
       }
     });
     res.status(200).json('Role deleted');
-  } catch (error) {
-    res.status(500).json({
-      error: error
-    });
+  } catch {
+    return next(createError(500));
   }
 }
 
