@@ -10,16 +10,16 @@ const createUserSchema = Joi.object({
 });
 
 const patchUserSchema = Joi.object({
-  firstname: Joi.string(),
-  lastname: Joi.string(),
+  firstname: Joi.string().min(1).max(100),
+  lastname: Joi.string().min(1).max(100),
   email: Joi.string().email(),
-  username: Joi.string(),
-  github: Joi.string(),
-  roleId: Joi.string()
+  username: Joi.string().min(1).max(20),
+  github: Joi.string().uri(),
+  roleId: Joi.any()
 });
 
 const returnUserSchema = Joi.object({
-  id: Joi.string().uuid(),
+  id: Joi.string().uuid().required(),
   firstname: Joi.string().min(1).max(100).required(),
   lastname: Joi.string().min(1).max(100).required(),
   email: Joi.string().email().required(),

@@ -1,3 +1,11 @@
+const validator = require('express-joi-validation').createValidator({});
+const {
+  createCommentSchema,
+  patchCommentSchema,
+  paramsCommentSchema,
+  returnCommentSchema,
+  returnCommentsSchema
+} = require('../schemas/comment.schema.js');
 const {
   getComments,
   getComment,
@@ -11,10 +19,9 @@ const {
 
 const router = Router();
 
-router.get('/', getComments);
-router.get('/:id', getComment);
-router.post('/', createComment);
-router.patch('/:id', patchComment);
-router.delete('/:id', deleteComment);
+router.get('/', validator.response(returnCommentsSchema), getComments);
+router.get('/:id', validator.params(paramsCommentSchema), validator.response(returnCommentSchema), getComment);
+router.post('/', validator.body(createCommentSchema), validator.response(returnCommentSchema), createComment);
+router.patch('/:id', validator.params(paramsCommentSchema), validator.body(patchCommentSchema), patchComment);
 
 module.exports = router;
