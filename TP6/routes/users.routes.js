@@ -1,7 +1,10 @@
 const validator = require('express-joi-validation').createValidator({});
 const {
   createUserSchema,
-  returnUserSchema
+  patchUserSchema,
+  paramsUserSchema,
+  returnUserSchema,
+  returnUsersSchema
 } = require('../schemas/user.schema.js');
 const {
   getUsers,
@@ -16,10 +19,12 @@ const {
 
 const router = Router();
 
-router.get('/', getUsers);
-router.get('/:id', getUser);
+//router.get('/', getUsers);
+router.get('/', validator.response(returnUsersSchema), getUsers);
+//router.get('/:id', getUser);
+router.get('/:id', validator.params(paramsUserSchema), validator.response(returnUserSchema), getUser);
 router.post('/', validator.body(createUserSchema), validator.response(returnUserSchema), createUser);
-router.patch('/:id', patchUser);
+router.patch('/:id', validator.params(paramsUserSchema), validator.body(patchUserSchema), patchUser);
 router.delete('/:id', deleteUser);
 
 module.exports = router;
