@@ -16,7 +16,7 @@ const getUsers = async (req, res) => {
 const getUser = async (req, res) => {
   try {
     let args = {};
-    if (req.query.posts) {
+    if (req.query.posts == 'true') {
       args.include = ['posts'];
     }
     const user = await User.findByPk(req.params.id, args);

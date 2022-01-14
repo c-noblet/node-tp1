@@ -36,7 +36,7 @@ const paramsPostSchema = Joi.object({
 });
 
 const queryPostSchema = Joi.object({
-  comments: Joi.string()
+  comments: Joi.string().empty('').default('false')
 })
 
 

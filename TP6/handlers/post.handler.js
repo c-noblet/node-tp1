@@ -16,7 +16,7 @@ const getPosts = async (req, res) => {
 const getPost = async (req, res) => {
   try {
     let args = {};
-    if (req.query.comments) {
+    if (req.query.comments == 'true') {
       args.include = ['comments'];
     }
     const post = await Post.findByPk(req.params.id, args);
